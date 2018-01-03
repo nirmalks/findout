@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , NgZone } from '@angular/core';
 import { Platform ,NavController } from 'ionic-angular';
 import { Camera , CameraOptions } from '@ionic-native/camera';
 import  Clarifai  from 'clarifai';
@@ -23,7 +23,7 @@ export class HomePage {
 
   outputs: Array<any> ;
 
-  constructor(public navCtrl: NavController , private camera : Camera ) {
+  constructor(public navCtrl: NavController , private camera : Camera , private zone:NgZone) {
 
   }
 
@@ -40,7 +40,10 @@ export class HomePage {
           console.log(response)
           if(response.status.code === 10000) {
             //success
-            this.outputs = response.outputs[0].data.concepts;
+            this.zone.run(() => {
+              // some code
+              this.outputs = response.outputs[0].data.concepts;
+            });
             console.log(this.outputs)
           }
         } ,
