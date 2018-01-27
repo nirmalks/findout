@@ -7,11 +7,14 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button (click)="takeImage()" color="primary">Go to Camera</button>
+  <div class="text-center">
+    <button ion-button (click)="takeImage()" color="primary">Take a Picture</button>
+  </div>
 
-    <ion-list >
-        <ion-item text-wrap *ngFor="let item of outputs" >
-        <p >{{item.name}}</p>
-        </ion-item>
-        </ion-list>
+  <ion-list class="results">
+    <h3 class="text-center">Results</h3>
+    <ion-item class="text-center" text-wrap *ngFor="let item of outputs">
+      <p>{{item.name}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
